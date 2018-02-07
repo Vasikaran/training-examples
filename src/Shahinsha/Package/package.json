@@ -1,0 +1,13 @@
+{
+  "name": "first-command",
+  "version": "0.0.1",
+  "description": "This is My First Command.",
+  "main": "test.js",
+  "scripts": {
+  },
+  "author": "Shahinsha",
+  "license": "ISC",
+  "bin" : {
+    "a" :"./sample1.js"
+  }
+}
