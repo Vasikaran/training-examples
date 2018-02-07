@@ -1,0 +1,21 @@
+{
+  "name": "first_cli_commands",
+  "version": "1.0.0",
+  "description": "learning cli commands",
+  "main": "cli_first_command.js",
+  "scripts": {
+    "siva" : "node tryit.js"
+  },
+  "bin" : {
+    "a" : "./allcommands.js" ,
+    "l" : "./list.js",
+    "h" : "./help.js",
+    "m" : "./move.js",
+    "c" : "./copy.js",
+    "r" : "./remove.js",
+    "n" : "./create.js",
+    "o" : "./edit.js"
+  },
+  "author": "Sivarammurugasamy",
+  "license": "ISC"
+}
