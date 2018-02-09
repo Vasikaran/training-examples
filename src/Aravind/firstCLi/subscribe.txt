@@ -1,0 +1,5 @@
+1) Medium.com
+2) JavaScript Weekly
+3) NodeJS Weekly
+4) React News Letter
+5) Panda Weekly

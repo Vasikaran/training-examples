@@ -1,0 +1,20 @@
+{
+  "name": "first-package",
+  "version": "1.0.0",
+  "description": "Nothing",
+  "main": "index.js",
+  "scripts": {
+    "list"   : "node listoutfile.js",
+    "move"   : "node movefile.js",
+    "cpy"    : "node copyfile.js",
+    "cmdhelp": "node help.js"
+  },
+  "bin" : {
+    "list"    : "./listoutfile.js",
+    "move"    : "./movefile.js",
+    "cpy"     : "./copyfile.js",
+    "cmdhelp" : "./help.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
