@@ -1,0 +1,20 @@
+{
+  "name": "ex_1",
+  "version": "1.0.0",
+  "description": "this is for study purpose",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin" :{
+    "mdr" : "./createFolder.js",
+    "l":"./listAllFiles.js",
+    "mve":"./move.js",
+    "cpy": "./copy.js",
+    "h":"./help.js",
+    "hlp": "./help.js",
+    "exce" : "./allMethods.js"
+  },
+  "author": "SK",
+  "license": "ISC"
+}
