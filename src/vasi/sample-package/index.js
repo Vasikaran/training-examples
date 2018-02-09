@@ -1,1 +1,1 @@
-console.log('Sample package');
+console.log('Sample package Hello');
