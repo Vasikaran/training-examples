@@ -1,0 +1,23 @@
+{
+  "name": "cli-commands",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin":{
+    "execcom" : "./allCommands",
+    "--help"  : "./help.js",
+    "cpf"     : "./copy.js",
+    "renf"    : "rename.js",
+    "mkf"     : "file.js",
+    "mkf"     : "folder.js",
+    "remf"    : "remove_file.js",
+    "remd"    : "remove_folder.js",
+    "mv"      : "move.js",
+    "lsdir"   : "list.js"
+  },
+  "author": "pari",
+  "license": "ISC"
+}
