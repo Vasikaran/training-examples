@@ -1,0 +1,18 @@
+{
+  "name": "list",
+  "version": "1.0.0",
+  "description": "\"this is for studying\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+     "hlp" : "./help.js",
+     "lst" : "./list.js",
+     "crtdir": "./crtdir.js",
+     "cut": "./cut.js",
+     "copy": "./copy.js"
+  },
+  "author": "raja",
+  "license": "ISC"
+}
