@@ -1,21 +1,18 @@
-var http     = require('http');
-var fs       = require('fs');
-var url      = require('url');
-var qrString = require('querystring');
-var path     = require('path');
-var redis    = require('redis');
-var client   = redis.createClient();
+const http     = require('http');
+const fs       = require('fs');
+const url      = require('url');
+const qrString = require('querystring');
+const path     = require('path');
+const redis    = require('redis');
+const client   = redis.createClient();
+
 http.createServer(function(req,res){
     res.writeHead(200 , {'content-type':'text/html'});
     var ans  = url.parse(req.url,true);
-    var file = fs.readFileSync('../employee.html').toString();
+    var file = fs.readFileSync(path.join(__dirname,'../App/employee.html')).toString();
     var body = "";
 
-    if (req.url == "/"){
-        res.write(file);
-        res.end();
-    }
-    else if (req.method == 'POST'){
+    if (req.method == 'POST'){
         req.on('data',function(chunk){
             body += chunk;
         });
@@ -23,9 +20,11 @@ http.createServer(function(req,res){
             progValue(body);
         });
     }
-    else{
-        res.write(file);
+    else if (ans.pathname == "/build/bundle.js"){
+        res.write(fs.readFileSync("."+ans.pathname));
         res.end();
+    } else {
+        res.end(file);
     }
 
     function progValue(givVal){
@@ -46,7 +45,6 @@ http.createServer(function(req,res){
             if (checknew.employeeID === ""){
                 checkEmpID(objct.Empobj);
             } else {
-                console.log(typeof(checknew.employeeID.toString()));
                 client.hset("AllDetails", (checknew.employeeID).toString(), JSON.stringify(checknew));
                 sendAllEmps();
             }
@@ -80,7 +78,6 @@ http.createServer(function(req,res){
         }
 
         function checkEmpID(employee){
-            console.log("newEmployee")
             let empId = 0;
             client.hgetall("AllDetails" ,function(err,reply){
                 if (reply === null){
@@ -96,4 +93,4 @@ http.createServer(function(req,res){
             });
         }
     }
-}).listen(8443);
+}).listen(8080);

@@ -1,0 +1,128 @@
+*{
+    padding:0px;
+    margin:0px;
+    font-family:sans-serif;
+}
+#maindiv{
+    width:100%;
+}
+.heading{
+    height: 65px;
+    box-shadow: 0px 0px 2px #ccc;
+    background: #234b5f;
+    box-sizing: border-box;
+    padding: 18px 0px 0px 22px;
+    font-size: 22px;
+    color: white;
+}
+.btnDivs{
+    width: 25%;
+    margin: auto;
+    margin-top: 210px;
+}
+.btn-primary{
+    margin-right: 30px;
+}
+.chngbtn{
+    float: right;
+    margin: -2px 20px 0px 0px;
+}
+.btnDv{
+    margin: 22px 0px 0px 40px
+}
+.first{
+    width: 240px;
+    margin: 0px 0px 0px 30px;
+}
+.ipt{
+    height: 26px;
+    width: 185px;
+    border: 1px solid gray;
+    border-radius: 2px;
+    background: white;
+    margin: 26px 0px 0px 32px;
+    padding-left: 7px;
+}
+#Name{
+    margin-top:20px;
+}
+.sbtn{
+    height: 25px;
+    padding: 0px 10px 0px 10px;
+    margin: 0px 0px 0px 16px;
+}
+.second{
+    height: 500px;
+    position: absolute;
+    top: 108px;
+    width: 20%;
+    left: 35%;
+}
+.srchInpt{
+    height: 26px;
+    width: 185px;
+    border: 1px solid gray;
+    border-radius: 2px;
+    background: white;
+    margin: 0px 0px 0px 31px;
+    padding-left: 7px;
+    font-size: 14px;
+    color: black;
+}
+.btnDiv{
+    position: absolute;
+    bottom: 40px;
+    left:30%;
+}
+.page{
+    height: 20px;
+    width: 20px;
+    color: teal;
+    background: none;
+    border: none;
+    font-size: 15px;
+}
+.page:hover{
+    cursor:pointer;
+}
+.emptxt{
+    height: 30px;
+    width: 70%;
+    background: none;
+    border: none;
+    font-size: 19px;
+    margin-top: 10px;
+    outline:none;
+    text-align: start;
+    float:left;
+}
+.emptxt:hover{
+    cursor:pointer;
+}
+.fa:hover{
+    cursor:pointer;
+}
+.empEdit,.empDel{
+    font-size:20px;
+    color:teal;
+    margin:3px 2px 0px 16px;
+}
+.txt{
+    margin: 20px 0px 0px 30px;
+}
+.detailtxt{
+    margin-top:30px;
+}
+.btn2{
+    margin-left:10px;
+}
+.bck{
+    margin-top: 20px;
+    background:teal;
+    color:white;
+}
+.changeEmpDet{
+    float:right;
+    height:30px;
+    margin-top: 10px;
+}
