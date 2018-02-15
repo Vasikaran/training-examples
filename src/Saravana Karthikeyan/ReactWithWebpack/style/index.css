@@ -1,0 +1,197 @@
+* {
+    margin : 0;
+    padding : 0;
+  }
+  #container {
+    width : 100%;
+  }
+  #header {
+    height : 100px;
+    width : 100%;
+    background : #2a75ed;
+    font-size :50px;
+    text-align : center;
+    padding : 20px;
+    box-sizing : border-box;
+    color : white;
+    font-family:'Lato',sans-serif
+  }
+  #centerDiv1, #centerDiv2 {
+    height: 800px;
+    width: 100%;
+    padding : 30px;
+    box-sizing : border-box;
+  }
+  #centerDiv2 {
+    height:600px;
+  }
+  #main {
+    width : 80%;
+    height : 750px;
+    background : #2a75ed;
+    margin : auto;
+    border : 1px solid;
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 10px 20px 0 rgba(0,0,0,0.2) !important;
+    font-family:'Lato', sans-serif;
+    color: #fff
+  }
+  #formHeader, #formFooter {
+    padding: 20px;
+    box-sizing: border-box;
+    height: 10%;
+    width: 100%;
+    font-size: 25px;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+    font-style: italic;
+    letter-spacing: 1px;
+    
+  }
+  #instructionDiv, #inputDiv {
+    height : 80%;
+    width : 45%;
+    background : transparent;
+    float : left;
+    text-align : left;   
+  }
+  #instructionDiv>div, #inputDiv>input, #inputDiv>select {
+    margin-left :20%;
+    height :25px;
+    width : 60%;
+    margin-top : 20px;
+    font-size : 20px;
+    overflow : auto;
+    border: 0;
+    background: transparent;
+    color: #fff
+  }
+  #inputDiv>input{
+    border-bottom:1px solid #e8dddd;
+    box-sizing: border-box;
+    outline: none;
+  }
+  #inputDiv>input::placeholder{
+    color: #e4e4e4;
+    font-size: 14px
+    
+  }
+  #semicolonDiv>div {
+    margin-top : 20px;
+    height :25px;
+    width : 100%;
+    font-size : 21px;        
+  }
+  #semicolonDiv {
+    height : 80%;
+    width : 10%;
+    float :left;
+    text-align : center;
+  }
+  #formFooter>button {
+    height: 40px;
+    width: 150px;
+    margin-top: 20px;
+    background: #aeccfd;
+    text-align: center;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    color: beige;
+    font-size: 20px;
+  }
+  #tableViewDiv>div {
+    position : relative;
+    height : 100px;
+    width: 100%;
+    background : white;
+    box-shadow : 0 2px 2px 4px rgba(222, 220, 220, 0.3);
+    cursor : pointer;
+  }
+  #fullDetailView {
+    position : absolute;
+    left : 20%;
+    height : 500px;
+    width : 90%;
+    background : #1a6cef;
+    border : 1px solid;
+    z-index: +1;
+  }
+  .SetCompanyName {
+    height:100px;
+    width :200px;
+    margin:auto;
+    padding-top: 40px;
+    box-sizing:border-box;
+  }
+  .SetCompanyName>div {
+      margin : auto;
+      height : 100%;
+      width : 300px;
+  }
+  .SetCompanyName>div>div {
+      float:left;
+      width:150px;
+      height:40px;
+  }
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+.mydiv {
+    height : 30px;
+    width : 100%;
+    color : white;
+    margin-top : 20px;
+}
+.closebtn {
+    cursor : pointer;
+    float: right;
+    margin-top: -40px;
+    margin-right: 18px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+#buttonHolder {
+    height : 80px;
+    width : 100%;
+}
+#pagechangeDiv {
+    height: 50px;
+    width: 200px;
+    margin: auto;
+    margin-top: 20px;
+    background: #aeccfd;
+    text-align: center;
+    overflow: auto;
+    border-radius: 3px;
+}
+#pagechangeDiv>button {
+    cursor: pointer;
+    margin-left: 5px;
+    height: 25px;
+    width: 30px;
+    border: none;
+    background: white;
+    margin-top: 13px;
+    border-radius: 3px;
+    font-size: 16px;
+}
+.detailShowDiv {
+    font-size: 20px;
+    width: 350px;
+    height: 35px;
+    margin-left: 60px;
+}
