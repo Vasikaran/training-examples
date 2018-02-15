@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config ./Webpack.Config.js",
-    "start": "webpack --config ./Webpack.Config.js --watch"
+   "dev-server": "nodemon ./nodefile.js localhost 1360",
+    "start": "webpack --config ./Webpack.Config.js --watch",
+    "go": "webpack-dev-server"
   },
   "author": "Vasikaran S <vasikaran.25@gmail.com>",
   "license": "ISC",
@@ -15,6 +17,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.9",
+    "nodemon": "^1.14.12",
     "style-loader": "^0.20.1",
     "webpack": "^3.11.0"
   },

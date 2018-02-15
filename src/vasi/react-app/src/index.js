@@ -9,5 +9,4 @@ class App extends Component{
         return <div className={style.heading}>Hello World!</div>
     }
 }
-
 ReactDOM.render(<App/>, document.getElementById('output'));
