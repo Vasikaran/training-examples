@@ -1,0 +1,125 @@
+#detailsPage,#appPage{
+    border:5px solid black;
+    margin-top:20px;
+    margin-left:50px;
+    border-radius:10px;
+    background:#eeffed;
+    overflow:auto;
+    float:left;
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 10px 20px 0 rgba(0,0,0,0.2);
+}
+#detailsPage{
+    height:600px;
+    width:460px;
+    }
+#appPage{
+    height:520px;
+    width:440px;
+}
+.heading,.heading1{
+    font-size:30px;
+}
+.heading{
+    margin-left:97px;
+}
+.heading1{
+    margin-left:160px;
+}
+#inner{
+    height:440px;
+    width:380px;
+    background:white;
+    margin-left:40px;
+    overflow:auto;
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 10px 20px 0 rgba(0,0,0,0.2);
+}
+.form-group{
+    width:300px;
+    margin-left:74px;
+}
+.btn btn-info{
+    height:40px;
+    width:325px;
+    background:#fff8e0;
+    border:1px solid black;
+    margin-top:25px;
+    margin-left:15px;
+    cursor:pointer;
+    color:black;
+}
+.all{
+    height:40px;
+    width:325px;
+    background:#fff8e0;
+    border:1px solid black;
+    margin-top:25px;
+    margin-left:15px;
+    cursor:pointer;
+    padding:6px;
+    font-size:17px;
+}
+.slide,.slide1{
+    overflow: hidden;
+    width:325px;
+    background:#fff8e0;
+    transition:height 0.5s;
+    margin-left:15px;
+    overflow:auto;
+    font-size:18px;
+    transition: height 0s;
+}
+.slide{
+    height:0px;
+    border:0px;
+}
+.slide1{
+    height:155px;
+    border:1px solid black;
+    border-top:0;
+}
+.det{
+    font-size:18px;
+    margin-left:20px;
+    margin-top:7px;
+}
+#submit,.page,.form-control,#detailpage{
+    margin-top:15px;
+}
+#submit{
+    margin-left: 93px;
+    width: 100px;
+}
+.page{
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+.pages{
+    font-size:20px;
+    margin-left:15px;
+}
+.form-control{
+    height:35px;
+    margin-left:-10px;
+}
+.form-group{
+    width:355px;
+}
+#detailpage{
+    margin-left: 37px;
+    width: 100px;
+}
+#homepage{
+    margin-top: 30px;
+    margin-left: 180px;
+    width: 100px;
+}
+#errorField{
+    height:30px;
+    font-size: 16px;
+    color: red;
+}
+
+
+
+
+
