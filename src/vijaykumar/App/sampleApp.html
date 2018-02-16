@@ -1,0 +1,559 @@
+<!Doctype html>
+<html>
+<head>
+<style>
+   .view{
+       margin-top:7px;
+   }
+   .inline{
+       display:inline-block;
+       cursor:pointer;
+   }
+   .fright{
+       float:right;
+       margin-right:20px;
+   }
+   #detaildiv{
+       margin-top:20px;
+       height:600px;
+       width:35%;
+       padding-left:20px;
+       padding-right:20px;
+       font-size:18px;
+       float:left;
+       margin-left:32%;
+   }
+   input{
+       height:30px;
+       float:right;
+       outline:none;
+       width:200px;
+   }
+   .title{
+       margin-left:30%;
+   }
+   .title1{
+       margin-left:30%;
+   }
+   .a{
+       display:inline-block;
+   }
+   #whole{
+       height:630px;
+       width:100%;
+   }
+   #nameDiv{
+       height:540px;
+       margin-top:10px;
+       width:40%;
+       box-shadow: 1px 1px 1px 1px lightgrey;
+       float:right;
+       margin-right:33%;
+       padding-left:50px;
+       font-size:18px;
+   }
+   #butDiv{
+        height: 60px;
+        padding:10px;
+        width: 40%;
+        box-shadow: 1px 1px 1px 1px lightgrey;
+        float: left;
+        margin-left: 0.1px;
+        overflow:auto;
+        float:right;
+        margin-right:33%;
+   }
+   #but1,#but2{
+       margin-top:20px;
+       margin-left:17%;
+       outline:none;
+       border:none;
+   }
+   .spacing{
+       margin-top:20px;
+   }
+   .spanspace{
+       margin-right:50px;
+       float:right;
+   }
+   #header{
+       float:left;
+       margin-left:40%;
+       font-size:30px;
+   }
+   .rightdiv{
+       height:100px;
+       width:50px;
+       color:blue;
+       float:left;
+   }
+   #but1{
+       margin-left:32%;
+   }
+   .a1{
+        left: 70%;
+        top: 12%;
+        position: absolute;
+   }
+   .center{
+          margin-left: 42%;
+    margin-top: 60px;
+   }
+</style>
+<link   rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+  <div id="whole"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.0/react.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.0/react-dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.js"></script>
+<script src="https://unpkg.com/react-router@3.0.0/umd/ReactRouter.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.5.2/redux.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/redux-promise-middleware/5.0.0/redux-promise-middleware.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.1/react-with-addons.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-redux/4.4.5/react-redux.js" type="text/javascript"></script>
+<script type = "text/babel">
+const {connect, Provider} = ReactRedux;
+const {combineReducers, createStore} = Redux;
+const {Router, Route} = ReactRouter;
+const IndexRoute = ReactRouter.IndexRoute;
+const Link = ReactRouter.Link;
+const browserHistory = ReactRouter.browserHistory;
+const initialState = {
+    formReducer :{  patientName :"", patientAge :"", patientGender :"", mobileNumber :"",
+                    bloodGroup :"", occupation :"", fatherName: "", address :"",
+                    states: ["patientName","patientAge","patientGender","mobileNumber","bloodGroup","occupation","fatherName","address"],
+                    fieldnames :["Name","Age","Gender","Mobile Number","Blood Group","Occupation","Father/Husband Name","Address"],id:0
+    },
+    nameReducer :{  patientDetails:[], count:0, ind:0, show:false, edit:false, slicedArray:[], search:[],support:[] , index:0,setTime:0,
+                    states: ["patientName","patientAge","patientGender","mobileNumber","bloodGroup","occupation","fatherName","address"],
+                    fieldnames :["Name","Age","Gender","Mobile Number","Blood Group","Occupation","Father/Husband Name","Address"],value:""
+    }
+}
+const nameReducer = (state, action) => {
+    if(state === undefined) { return true }
+    else{
+        switch(action.type){
+            case "wilMount":
+                state = { ...state, ...action.payload};
+                break;
+        }
+        return state;
+    }
+}
+const formReducer = (state, action) => {
+    if(state === undefined) {
+        return true;
+    }else{
+        switch(action.type){
+            case "setValue":
+                state = Object.assign({}, state, action.payload);
+            break;
+            case "addValues":
+                state = Object.assign({}, action.payload);
+            break;
+    }
+    return state;
+    }
+}
+const store = createStore(combineReducers({formReducer,nameReducer}),initialState);
+const Ptag = (props) => {
+        if (props.click !== undefined){
+            return <p className = {props.clas} id ={props.id} onClick = {props.click}>{props.value}</p>
+        }
+        else{
+            return <p className = {props.clas}>{props.value}{props.children}</p>
+        }
+}
+
+class Button extends React.Component{
+    constructor(props){
+        super(props);
+        this.delete = this.delete.bind(this);
+        this.edit = this.edit.bind(this);
+        this.changeBool = this.changeBool.bind(this);
+        this.setstore = this.setstore.bind(this);
+    }
+    edit(){
+        this.props.method(this.props.value);
+        browserHistory.push("/edit/" + this.props.ind);
+        store.dispatch({type:"wilMount",payload:{edit:true, index:this.props.index}});
+    }
+    delete(){
+        $.post("/delete", {"delvalue":this.props.value},function(data,status){
+            data = JSON.parse(data);
+            let prop = Math.ceil(data.length/10);
+            store.dispatch({ type:"wilMount", payload:{patientDetails: [...data], count : prop ,
+                             slicedArray : data.slice((prop - 1)*10,((prop-1)*10)+10)}, support:[...data]});
+        });
+    }
+    setstore(parent){
+        let statevalues = Object.values(parent.state);
+        let common = store.getState().nameReducer;
+        for(let i of common.support){
+            i = JSON.parse(i);
+            if(i[8]==common.index){
+                var getcom = common.support.indexOf(JSON.stringify(i));
+                break;
+            }
+        }
+        statevalues.push(common.index);
+        $.post("/edit",{"index":getcom,"array":JSON.stringify(statevalues)},function(data,status){
+            data = JSON.parse(data);
+            let prop = Math.ceil(data.length/10);
+            browserHistory.push("/page/"+prop);
+            store.dispatch({ type:"wilMount", payload:{patientDetails: data,edit:false,count : prop ,
+                                                       slicedArray : data.slice((prop - 1)*10,((prop-1)*10)+10)}});
+        });
+    }
+    changeBool(bool, page){
+        browserHistory.push("/page/" + page);
+        store.dispatch({ type: "wilMount", payload: {show:bool,edit:bool} });
+    }
+    render(){
+        let type = this.props.type;
+        if(type == "Edit"){
+            return <button className = {this.props.className} onClick = {this.edit}>{type}</button>
+        }
+        else if(type == "Delete"){
+            return <button className = {this.props.className} onClick = {this.delete}>{type}</button>
+        }
+        else if(type == "cancel" || type == "Back"){
+            return <button onClick={() => this.changeBool(false,store.getState().nameReducer.count)}
+                    className = {this.props.className}>{type}</button>
+        }
+        else if(type == "edit"){
+            return <button onClick={() => this.setstore(this.props.onClick)}
+                    className = {this.props.className}>{type}</button>
+        }
+    }
+}
+
+class Buttondiv extends React.Component{
+    constructor(props){
+        super(props);
+        this.changecount = this.changecount.bind(this);
+    }
+    shouldComponentUpdate(nextProps,nextState){
+        return this.props.counts != nextProps.counts ? true : false;
+    }
+    changecount(a){
+        browserHistory.push("/page/" + a);
+        store.dispatch({type:"wilMount",
+            payload:{show:false, slicedArray:[...store.getState().nameReducer.patientDetails.slice((a - 1)*10,((a - 1)*10)+10)],count:a}
+        });
+    }
+    render(){
+        let countChange = this.changecount;
+        let stores = store.getState().nameReducer;
+        return  <div id="butDiv">{
+                stores.patientDetails.map(function(val,ind){
+                 if((ind+1) % 10 == 1){
+                     return <button className = "btn btn-default" style = {{marginLeft:"10px"}}
+                             key={ind} onClick={()=>countChange(((ind/10)+1))}>{ind/10+1}</button>
+                 }
+                })
+        }</div>
+    }
+}
+
+class Namediv extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = { patientName :"", patientAge :"", patientGender :"", mobileNumber :"",
+                       bloodGroup :"", occupation :"", fatherName: "", address :""}
+        this.bhistory = this.bhistory.bind(this);
+        this.detailView = this.detailView.bind(this);
+        this.change = this.change.bind(this);
+        this.search = this.search.bind(this);
+
+        this.setstate = this.setstate.bind(this);
+    }
+    bhistory(){
+        browserHistory.push("/form");
+    }
+    setstate(a){
+        let obj = {};
+        store.getState().nameReducer.states.forEach(function(val,ind){
+            obj[val] = a[ind];
+        });
+        this.setState({...obj});
+    }
+    detailView(e, page){
+        browserHistory.push("/name/"+e.target.id);
+        store.dispatch({ type: "wilMount",payload: {show:true, ind:e.target.id}  });
+    }
+    search(e){
+        let target = e.target.value;
+        let details = store.getState().nameReducer;
+        clearTimeout(details.setTime);
+        details.setTime =  setTimeout(function(target){
+            if(target !== ""){
+                let array = details.support.filter(function(val,ind){
+                    let regexp = new RegExp(target, "gi");
+                    let value = JSON.parse(val);
+                    if(regexp.test(value[0])){
+                        return val;
+                    }
+                });
+                let index =  Math.ceil(array.length/10);
+                store.dispatch({ type:"wilMount",payload:{patientDetails: [...array], count:index,
+                                 slicedArray: array.slice((index - 1) * 10,((index - 1) * 10) + 10)} });
+            }
+            else{
+                $.get("/alldetail",function(data,status){
+                    data = JSON.parse(data);
+                    let index = Math.ceil(data.length/10);
+                    store.dispatch({ type:"wilMount",
+                                    payload:{slicedArray: data.slice((index - 1)*10,((index - 1)*10)+10),
+                                             count: index, support:[...data], patientDetails: [...data]}});
+                });
+            }
+        },1000,e.target.value);
+       store.dispatch({ type:"wilMount",payload:{value:e.target.value} });
+    }
+    change(e,ind){
+        this.setState({[store.getState().nameReducer.states[ind]]:e.target.value});
+    }
+    componentWillMount(){
+        var parent = this;
+        $.get("/alldetail", function(data, status){
+            data = JSON.parse(data);
+            let prop = Math.ceil(data.length/10);
+            let sliced =  data.slice((prop - 1)*10, ((prop-1)*10)+10);
+            if(parent.props.params.number !== undefined){
+                let number = parent.props.params.number;
+                if((number <= prop && number>0) == false){
+                    browserHistory.push("/page/"+prop);
+                    number=prop;
+                }
+                store.dispatch({type:"wilMount",payload:{ patientDetails : [...data], count : number,
+                                  slicedArray : data.slice((number - 1)*10,((number-1)*10)+10) ,
+                                  support: [...data] }});
+            }
+            else if(parent.props.params.ind !== undefined){
+                let index = parent.props.params.ind;
+                if((index <= data.length  && index > 0) == false){
+                    browserHistory.push("/name/"+(data.length));
+                    index = data.length;
+                }
+                store.dispatch({type:"wilMount",payload:{ patientDetails : [...data], support: [...data],
+                                  count : prop ,slicedArray : [...sliced], show : true, ind : index}});
+            }
+            else if(parent.props.params.index !== undefined){
+                let index = parent.props.params.index;
+                if((index <= data.length  && index > 0) == false){
+                    browserHistory.push("/edit/"+(data.length));
+                    index = data.length;
+                }
+                parent.setstate(JSON.parse(data[index-1]));
+                store.dispatch({type:"wilMount",payload:{ patientDetails : [...data], support: [...data], edit : true,
+                                  count : prop ,slicedArray : [...sliced],  ind : index}});
+            }
+            else{
+                browserHistory.push("/page/"+prop);
+                store.dispatch({type:"wilMount",payload:{ patientDetails : [...data], count : prop ,
+                                  slicedArray : [...sliced], support: [...data]}});
+            }
+        });
+    }
+    componentDidMount(){
+        rerender(this);
+    }
+    componentWillUnmount(){
+        this.unsubscribe();
+    }
+    render(){
+        var detailView = this.detailView, prop = store.getState().nameReducer;
+        var parent = this;
+        var tempArr = prop.slicedArray;
+        var sample = [];
+        if(prop.show && prop.edit == false) {
+            //console.log("if");
+            sample = prop.fieldnames.map(function(val,ind){
+            let spanElem = JSON.parse(prop.patientDetails[(prop.ind - 1)]);
+            return  <Ptag value = {val} key = {val+ind}>
+                        <span className = "spanspace">{spanElem[ind]}</span>
+                    </Ptag>
+            }).concat([<Button type ="Back" key = "Back" className = "btn btn-default title1" /> ])
+        }
+        else if(prop.edit){
+            //console.log("elif");
+            sample =  prop.fieldnames.map(function(val,ind){
+                return  <Ptag value = {val} key = {val+ind}>
+                            <input className = "spanspace" onChange = {(event)=>{parent.change(event,ind)}}
+                             value = {parent.state[prop.states[ind]]}/>
+                        </Ptag>
+            }).concat([<Button type="cancel" key ="cancel" className = "btn btn-default title1"/> ,
+                       <Button className = "btn btn-default" key = "edit" onClick = {this} type = "edit"/>]);
+        }
+        else if(!prop.show){
+        //console.log("elif2");
+        sample = tempArr.map(function(val,ind){
+            val = JSON.parse(val);
+            let index = ((prop.count-1) * 10) + (ind + 1);
+            return  <div key = { val + ind } className = "view">
+                        <Ptag clas = "inline" id = {index} click = {(event) => detailView(event,prop.count)}
+                            value = {val[0]}/>
+                        <Button type = "Delete" className = "btn btn-default fright" value = {JSON.stringify(val)}/>
+                        <Button type = "Edit" className = "btn btn-default fright" value = {val} index = {val[8]}
+                                              ind = {index} method = {parent.setstate} />
+                    </div>
+        });
+        }
+        return <div>
+                    <h4 id="header"> <b>Patient details</b>
+                    { (!prop.show && !prop.edit) ?
+                        <input placeholder = "search" type="text" style = {{fontSize:"20px",marginLeft: "320px"}}
+                           value ={prop.value} onChange = {(event)=> this.search(event)}/> : "" } </h4>
+                    <div id="nameDiv">
+                     <h3 className = "title1"><b>{(prop.show) ? "Detailed view" : "Patient Name"}</b></h3>{sample}
+                    </div>
+                    <Buttondiv counts = {prop.count}/>
+                    <div className="rightdiv a1">
+                        <button onClick = {this.bhistory} className = "btn btn-primary">Form</button>
+                    </div>
+               </div>
+    }
+}
+
+class Form extends React.Component{
+    constructor(props){
+        super(props);
+        this.bhistory = this.bhistory.bind(this);
+        this.setVal = this.setVal.bind(this);
+        this.addValue = this.addValue.bind(this);
+    }
+    componentDidMount(){
+        rerender(this);
+    }
+    componentWillUnmount(){
+        this.unsubscribe();
+    }
+    bhistory(){
+        store.dispatch({type:"wilMount",payload:{show:false,edit:false}});
+        $.get("/alldetail",
+            function(data,status){
+                data = JSON.parse(data);
+                browserHistory.push("/page/" + Math.ceil(data.length/10));
+        });
+    }
+    setVal(e,a,b){
+        let obj = {};
+        obj[store.getState().formReducer.states[a]] = e.target.value;
+        store.dispatch({
+            type:"setValue",
+            payload:obj
+        });
+    }
+    addValue(state){
+        var count = 0, detarray = [];
+        var stores = store.getState().formReducer;
+        stores.states.map(function(val,ind){
+            state[val] == "" ? count++ : detarray.push(state[val]);
+        });
+        if(count == 0) {
+            store.dispatch({
+                type:"addValues",
+                payload: {patientName :"", patientAge :"", patientGender :"", mobileNumber :"",
+                          bloodGroup :"", occupation :"", fatherName: "", address : "",
+                    states: ["patientName","patientAge","patientGender","mobileNumber","bloodGroup","occupation","fatherName","address"],
+                    fieldnames :["Name","Age","Gender","Mobile Number","Blood Group","Occupation","Father/Husband Name","Address"]
+                }
+            });
+            $.get("/alldetail",function(data,status){
+                data = JSON.parse(data);
+                let temp = 0;
+                if(data.length>0){
+                    let value = data[data.length-1];
+                    value = JSON.parse(value);
+                    temp = value[8];
+                }
+                detarray.push((temp) +1);
+                $.post("/details", { "array": JSON.stringify(detarray) });
+            });
+        }
+    }
+    render() {
+        var propes = store.getState().formReducer;
+        var setvalue = this.setVal;
+        var maps = propes.fieldnames.map(function(val,ind){
+                     return <div className = "spacing" key = {val+ind}>
+                                <Ptag clas = "a" value = {val}/>
+                                <input id = {"inp"+(ind+1)} value = {propes[propes.states[ind]]}
+                                type = "text" onChange = {(event) =>  setvalue(event,ind,propes)} />
+                            </div>
+                    });
+        return  <div>
+                    <h4 id = "header"><b>Patient details</b></h4>
+                    <div id = "detaildiv">
+                    <h3 className = "title"><b>Add details</b></h3>{ maps}
+                    <button id = 'but1' className = "btn btn-primary"
+    	             onClick = {()=> this.addValue(propes)} >Add Patient</button>
+                    </div>
+                    <div className="rightdiv">
+                        <button onClick = {this.bhistory} id = "but2" className = "btn btn-primary">Details</button>
+                    </div>
+                </div>
+	        }
+}
+
+class Home extends React.Component{
+    browsehistory(){
+        browserHistory.push("/form");
+    }
+    browhistory(){
+        $.get("/alldetail",
+        function(data,status){
+            data = JSON.parse(data);
+            browserHistory.push("/page/"+ Math.ceil(data.length/10));
+            store.dispatch({type:"wilMount",payload:{show:false,edit:false}});
+        });
+    }
+    componentWillMount(){
+
+        browserHistory.push("/");
+    }
+    componentDidMount(){
+        rerender(this);
+    }
+    componentWillUnmount(){
+        this.unsubscribe();
+    }
+    render(){
+    return  <div>
+                <h4 id="header"><b>Patient details</b></h4><br/><br/>
+                <div className = "center">
+                    <button onClick = {this.browsehistory} className = "btn btn-primary">Form</button>
+                    <span style={{color:"white"}}>asdf</span>
+                    <button onClick = {this.browhistory} className = "btn btn-primary">Details</button>
+                </div>
+            </div>
+    }
+}
+
+function rerender(context){
+    context.unsubscribe = store.subscribe(() => {
+        context.forceUpdate();
+    });
+}
+ReactDOM.render(<Provider store = {store}>
+                    <Router history = {browserHistory}>
+                        <Route path="/" component={Home}/>
+                        <Route path="/form" component={Form}/>
+                        <Route path="/page" component={Namediv}>
+                            <Route path=":number" component={Namediv}/>
+                        </Route>
+                        <Route path="/name" component={Namediv}>
+                            <Route path=":ind" component={Namediv}/>
+                        </Route>
+                        <Route path="/edit" component={Namediv}>
+                            <Route path=":index" component={Namediv}/>
+                        </Route>
+                        <Route path="/*" component={Home}/>
+                    </Router>
+                 </Provider>, whole);
+</script>
+</body>
+</html>
