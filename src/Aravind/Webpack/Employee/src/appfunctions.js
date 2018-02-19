@@ -123,7 +123,7 @@ export const delDetail = (e) => {
       $.post("/delEmployee",{"employeeID":e.target.getAttribute('name')},function(data,status){
           var deletedReturnemp = Object.values(JSON.parse(data));
           let len = Math.ceil(deletedReturnemp.length/10);
-          AllEmpDetails(deletedReturnemp, tenEmps(deletedReturnemp));
+          AllEmpDetails(deletedReturnemp, tenEmps(deletedReturnemp,"first"));
       });
 }
 const empReducer =  (state =  {
