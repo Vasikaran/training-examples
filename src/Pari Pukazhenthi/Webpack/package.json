@@ -23,5 +23,8 @@
     "redux": "^3.7.2",
     "style-loader": "^0.20.1",
     "webpack": "^3.11.0"
+  },
+  "dependencies": {
+    "mysql": "^2.15.0"
   }
 }
