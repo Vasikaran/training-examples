@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import checkRegex from "../functions/checkRegex.js";
 import $ from "jquery";
 import "../style/index.css";
-
+console.log(browserHistory,window.history);
 function Application(props){
    let valueList = Object.keys(props.user);
    if(browserHistory.getCurrentLocation().pathname != "/home"){
@@ -54,20 +54,9 @@ const mapHomeDispatchToProps = (dispatch) => {
         }
     };
 };
-	        
+
 const mapHomeStateToProps = (state) => {
     return {user:state.user}
 };
 
 export default Application = connect(mapHomeStateToProps, mapHomeDispatchToProps)(Application);
-
-
-
-
-
-
-
-
-
-
-
