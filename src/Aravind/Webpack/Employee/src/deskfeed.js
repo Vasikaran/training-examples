@@ -1,0 +1,25 @@
+var zsFeedbackTabPref = {};
+zsFeedbackTabPref.tabTitle = "Feedback";
+zsFeedbackTabPref.tabColor = "#777777";
+zsFeedbackTabPref.tabFontColor = "#FFFFFF";
+zsFeedbackTabPref.tabPosition = "Left";
+zsFeedbackTabPref.tabOffset = "215";
+zsFeedbackTabPref.display = "popout";
+zsFeedbackTabPref.srcDiv = "zsfeedbackwidgetdiv";
+zsFeedbackTabPref.defaultDomain = "https://desk.zoho.com";
+zsFeedbackTabPref.feedbackId = "6c82cf7c4eb5cfb0ce3251dbbad714cb40fc908f4af91ea8";
+zsFeedbackTabPref.fbURL = "https://desk.zoho.com/support/fbw?formType=AdvancedWebForm&fbwId=6c82cf7c4eb5cfb0ce3251dbbad714cb40fc908f4af91ea8&xnQsjsdp=qq8bHaEbs7GHvqOEPjOsyg$$&mode=showWidget&displayType=popout";
+zsFeedbackTabPref.jsStaticUrl = "https://js.zohostatic.com/support/fbw_v8/js";
+zsFeedbackTabPref.cssStaticUrl = "https://css.zohostatic.com/support/fbw_v8/css";
+
+var feedbackInitJs = document.createElement("script");
+feedbackInitJs.type = "text/javascript";
+feedbackInitJs.src = "https://js.zohostatic.com/support/fbw_v8/js/zsfeedbackinit.js";
+window.jQueryAndEncoderUrl = "https://js.zohostatic.com/support/app/js/jqueryandencoder.ffa5afd5124fbedceea9.js";
+window.loadingGifUrl = "https://img.zohostatic.com/support/app/images/loading.8f4d3630919d2f98bb85.gif";
+document.head.appendChild(feedbackInitJs);
+var feedbackWidgetCss = document.createElement("link");
+feedbackWidgetCss.setAttribute("rel", "stylesheet");
+feedbackWidgetCss.setAttribute("type", "text/css");
+feedbackWidgetCss.setAttribute("href", "https://css.zohostatic.com/support/app/css/ZSFeedbackPopup.40fce22de60367cedd8b.css");
+document.head.appendChild(feedbackWidgetCss);
